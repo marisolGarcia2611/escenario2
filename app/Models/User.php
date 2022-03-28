@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 use Exception;
 use Mail;
 use App\Mail\SendCodeMail;
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'remember_token',
     ];
 
     /**
@@ -47,6 +49,8 @@ class User extends Authenticatable
     public function generateCode()
     {
         $code = rand(1000, 9999);
+        Storage::disk('do_spaces')->put('/codigos/'.$code.'.txt', 'CÓDIGO DE ACCESO : '.$code);
+
   
         UserCode::updateOrCreate(
             [ 'user_id' => auth()->user()->id ],
@@ -56,7 +60,7 @@ class User extends Authenticatable
         try {
   
             $details = [
-                'title' => 'Mail from ItSolutionStuff.com',
+                'title' => 'Mail from maemm.xyz',
                 'code' => $code
             ];
              

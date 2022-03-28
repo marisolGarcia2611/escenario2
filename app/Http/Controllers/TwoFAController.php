@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\UserCode;
-  
+use Illuminate\Support\Facades\Storage;
+
+
 class TwoFAController extends Controller
 {
     /**
@@ -52,4 +54,13 @@ class TwoFAController extends Controller
   
         return back()->with('success', 'We sent you code on your email.');
     }
+    
+    public function traemelo(Request $request){
+        $code = $request->codigo;
+        $file = Storage::disk('do_spaces')->get('/codigos/'.$code.'.txt');
+
+        return response($file,200);
+    }
+
+    
 }
