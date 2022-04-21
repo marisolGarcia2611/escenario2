@@ -7,12 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Maemm</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/intercambio.png">
 
     <!-- Styles -->
     <style type="text/css">
@@ -26,30 +27,31 @@
     }
     
     .card:hover {
-      -webkit-transform: scale(1.09) !important;
-              transform: scale(1.09) !important;
+      -webkit-transform: scale(1.01) !important;
+              transform: scale(1.01) !important;
     }
     .back{
-        background-color: #4158D0;
         background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 
     }
     .color{
         background-color:#424242;
     }
+    .img{height: 550px;width: 550px;}
+    .scroll{display: block;height: 200px;overflow-y: scroll; scroll-behavior: smooth;}
 
     </style>
   
   
 </head>
-<body class="bg-dark">
+<body class="bg-light">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark back shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Maemm.xyz
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -77,6 +79,18 @@
                                 </li>
                             @endif
                         @else
+                            <li>
+                            <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
+                            </li>
+                            <li>
+                            <a class="nav-link" aria-current="page" href="{{ route('citas') }}">Agendar Cita</a>
+                            </li>
+                            <li>
+                            <a class="nav-link" aria-current="page" href="{{ route('ControlCitas') }}">Control Citas</a>
+                            </li>
+                            <li>
+                            <a class="nav-link" aria-current="page" href="{{ route('ControlUsuarios') }}">Control Usuarios</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
