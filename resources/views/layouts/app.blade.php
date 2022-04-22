@@ -39,6 +39,7 @@
     }
     .img{height: 550px;width: 550px;}
     .scroll{display: block;height: 200px;overflow-y: scroll; scroll-behavior: smooth;}
+    .scroll2{display: block;height:400px;overflow-y: scroll; scroll-behavior: smooth;}
 
     </style>
   

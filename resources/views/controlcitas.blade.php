@@ -7,52 +7,27 @@
              <h1 class="text-muted">Control de Citas</h1>
          </div>
      </div>
-    <div class="row scroll">
-            <table class="table table-striped">
+    <div class="row scroll2">
+            <table class="table table-striped table-responsive">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Usuario</th>
             <th scope="col">Cita</th>
-            <th scope="col">Hora y Fecha</th>
-            <th scope="col">Estado</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Fecha</th>
             <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>...</td>
-            <td>4:00 pm 10/09/2022</td>
-            <td>
-            <button class="btn btn-outline-dark">Aprobar</button>
-            <button class="btn btn-outline-secondary">Rechazar</button>
-            </td>
-            <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>...</td>
-            <td>4:00 pm 10/09/2022</td>
-            <td>
-            <button class="btn btn-outline-dark">Aprobar</button>
-            <button class="btn btn-outline-secondary">Rechazar</button>
-            </td>
-            <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td>Ted</td>
-            <td>...</td>
-            <td>4:00 pm 10/09/2022</td>
-            <td>
-            <button class="btn btn-outline-dark">Aprobar</button>
-            <button class="btn btn-outline-secondary">Rechazar</button>
-            </td>
-            <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-            </tr>
+
+            @foreach ($datos as $item)
+                <tr>
+                <td>{{$item->descripcion}}</td>
+                <td>{{$item->hora}}</td>
+                <td>{{$item->fecha}}</td>
+                <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+                </tr>
+            @endforeach
+
         </tbody>
         </table>
     </div>
@@ -95,7 +70,11 @@
         <br>
         <br>
 
-    <div class="row">
+
+
+        
+
+    <!--<div class="row">
         
         <div class="col-md-12"><h2 class="">Historial</h2></div>
 
@@ -143,6 +122,6 @@
          <div class="col-md-6">
          </div>
      </div>
-    </div>
+    </div>-->
 
 @endsection

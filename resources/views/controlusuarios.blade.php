@@ -7,48 +7,48 @@
              <h1 class="text-muted">Usuarios</h1>
          </div>
      </div>
+            @if($mensaje = Session::get('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{$mensaje}}
+                            </div>
+            @endif
+
     <div class="row scroll">
-            <table class="table table-striped">
+     <table class="table table-striped">
         <thead>
             <tr>
-            <th scope="col">#</th>
             <th scope="col">Usuario</th>
+            <th scope="col">Correo Electronico</th>
             <th scope="col">Rol</th>
             <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Empleado</td>
-            <td>
-            <button class="btn btn-outline-dark">Eliminar</button>
-            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-            </td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Empleado</td>
-            <td>
-            <button class="btn btn-outline-dark">Eliminar</button>
-            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-            </td>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td>Ted</td>
-            <td>Cliente</td>
-            <td>
-            <button class="btn btn-outline-dark">Eliminar</button>
-            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-            </td>
-            </tr>
+            @foreach ($datosuser as $item)
+                <tr>
+                <td>{{$item->name}}</td>
+                <td>{{$item->email}}</td>
+                <td>{{$item->rol}}</td>
+                <td>
+                    <p>
+                    <form  action="{{route('showUser',$item->id)}}" method="GET"> 
+                        <button class="btn btn-outline-dark">Eliminar</button>
+                    </form>
+
+                    <form action="{{route('editUser',$item->id)}}" method="GET"> 
+                        <button class="btn btn-outline-secondary">Editar</button>
+                    </form>
+
+                    </p>
+
+                </td>
+                </tr>
+             @endforeach
+
         </tbody>
-        </table>
+     </table>
     </div>
-            <!-- Modal -->
+            <!-- Modal data-bs-toggle="modal" data-bs-target="#exampleModal"
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -84,7 +84,7 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <br>
         <br>
         <br>
