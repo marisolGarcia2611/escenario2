@@ -80,22 +80,6 @@
                                 </li>
                             @endif
                         @else
-                        
-                            <li>
-                            <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
-                            </li>
-                            <li>
-                            <a class="nav-link" aria-current="page" href="{{ route('citas') }}">Agendar Cita</a>
-                            </li>
-                            @if(Auth()->user()->rol == 2 || Auth()->user()->rol == 3)
-                            <li>
-                            <a class="nav-link" aria-current="page" href="{{ route('ControlCitas') }}">Control Citas</a>
-                            </li>
-                            @elseif (Auth()->user()->rol == 3)
-                            <li>
-                            <a class="nav-link" aria-current="page" href="{{ route('ControlUsuarios') }}">Control Usuarios</a>
-                            </li>
-                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

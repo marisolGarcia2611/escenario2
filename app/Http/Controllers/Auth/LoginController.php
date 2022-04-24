@@ -54,12 +54,12 @@ class LoginController extends Controller
      
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-  
             auth()->user()->generateCode();
-  
             return redirect()->route('2fa.index');
-        }
-    
+        } 
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        
+    
+        
     }
 }

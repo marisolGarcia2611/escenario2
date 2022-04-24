@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/download',  [App\Http\Controllers\TwoFAController::class, 'traemelo'])->name('download');
+Route::get('/verify', [App\Http\Controllers\SegundoMetodoController::class, 'store'])->name('verify');

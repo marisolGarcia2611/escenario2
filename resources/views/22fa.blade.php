@@ -8,10 +8,10 @@
                 <div class="card-header fw-bold">2FA Verification</div>
   
                 <div class="card-body bg-light text-muted">
-                    <form method="POST" action="{{ route('2fa.post') }}">
+                    <form method="POST" action="{{ route('fa.post') }}">
                         @csrf
             
-                        <p class="text-center">We sent code to email : {{ substr(auth()->user()->email, 0, 5) . '******' . substr(auth()->user()->email,  -2) }}</p>
+                        <p class="text-center">We sent a Mail to your email : {{ substr(auth()->user()->email, 0, 5) . '******' . substr(auth()->user()->email,  -2) }}</p>
   
                         @if ($message = Session::get('success'))
                             <div class="row">
@@ -36,22 +36,14 @@
                         @endif
   
                         <div class="form-group row">
-                            <label for="code" class="col-md-4 col-form-label text-md-left">Code</label>
+                            <label for="code" class="col-md-4 col-form-label text-md-left">Favor de Verificar la liga que se mandó a su correo</label>
   
-                            <div class="col-md-6">
-                                <input id="code" type="number" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="code" autofocus>
-  
-                                @error('code')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            
                         </div>
   
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <a class="btn btn-link" href="{{ route('2fa.resend') }}">Resend Code?</a>
+                                <a class="btn btn-link" href="{{ route('fa.resend') }}">Resend Code?</a>
                             </div>
                         </div>
   

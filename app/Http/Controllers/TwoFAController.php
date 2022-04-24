@@ -8,6 +8,7 @@ use App\Models\UserCode;
 use Illuminate\Support\Facades\Storage;
 
 
+
 class TwoFAController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class TwoFAController extends Controller
      * @return response()
      */
     public function index()
-    {
+    {   
         return view('2fa');
     }
   
@@ -30,15 +31,26 @@ class TwoFAController extends Controller
         $request->validate([
             'code'=>'required',
         ]);
+
+        
+            $find = UserCode::where('user_id', auth()->user()->id)
+            ->where('code', $request->code)
+            ->where('updated_at', '>=', now()->subMinutes(2))
+            ->first();
+        
   
-        $find = UserCode::where('user_id', auth()->user()->id)
-                        ->where('code', $request->code)
-                        ->where('updated_at', '>=', now()->subMinutes(2))
-                        ->first();
+        
   
         if (!is_null($find)) {
             Session::put('user_2fa', auth()->user()->id);
-            return redirect()->route('home');
+            $rol = Auth()->user()->rol;
+            if($rol == 2){
+                    auth()->user()->tokenAu();
+                    return view('22fa');
+            } else {
+                return redirect()->route('home');
+            }
+            
         }
   
         return back()->with('error', 'You entered wrong code.');

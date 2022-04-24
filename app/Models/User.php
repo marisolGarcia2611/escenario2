@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Exception;
+use Illuminate\Support\Str;
 use Mail;
 use App\Mail\SendCodeMail;
+use App\Mail\SendTokenMail;
 
 class User extends Authenticatable
 {
@@ -25,6 +28,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rol',
         'remember_token',
     ];
 
@@ -69,5 +73,29 @@ class User extends Authenticatable
         } catch (Exception $e) {
             info("Error: ". $e->getMessage());
         }
+    }
+
+    public function tokenAu(){
+        $token = Str::random(10);
+        $code = Hash::make($token);
+        
+        SegundoMetodo::updateOrCreate(
+            [ 'user_id' => auth()->user()->id ],
+            [ 'token' => $code ]
+        );
+
+        try{
+
+            $details = [
+                'title' => 'Mail from maemm.xyz',
+                'code' => $code
+            ];
+
+            Mail::to(auth()->user()->email)->send(new SendTokenMail($details));
+
+        }catch (Exception $e){
+            info("Error: ". $e->getMessage());
+        }
+
     }
 }
