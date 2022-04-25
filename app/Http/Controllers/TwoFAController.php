@@ -42,12 +42,24 @@ class TwoFAController extends Controller
         
   
         if (!is_null($find)) {
+            $ipaddress = gethostbynamel(gethostname());
+        $ip_actual = $ipaddress[1];
+            $mivpn= '';
+            $json = vpn::where('user_id','=',$usuario)->select("vpn")->find(1);
+             $vpns = json_decode($json,true);
+            foreach ($vpns as $vpn){
+            $mivpn = $vpn;
+                }
             Session::put('user_2fa', auth()->user()->id);
             $rol = Auth()->user()->rol;
             if($rol == 2){
                     auth()->user()->tokenAu();
                     return view('22fa');
-            } else {
+            } else if($rol == 3  && $mivpn == $ip_actual){
+                return redirect()->route('home');
+            } else if($rol == 3  && $mivpn != $ip_actual){
+                    return redirect()->route('logout');
+            } else if($rol == 1){
                 return redirect()->route('home');
             }
             
