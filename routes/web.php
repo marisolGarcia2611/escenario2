@@ -36,5 +36,6 @@ Route::get('/editUser/{id}', [App\Http\Controllers\VistasController::class, 'edi
 Route::put('/update/{id}', [App\Http\Controllers\VistasController::class, 'update'])->name('update');  
 Route::get('/token', [App\Http\Controllers\TokenVController::class, 'index'])->name('token');
 Route::get('/tokenV', [App\Http\Controllers\TokenVController::class, 'index'])->name('tokenV');
+Route::get('/permission', [App\Http\Controllers\PermissionController::class, 'index'])->name('danger');
 
 //Route::get('/download', 'ResgisterController@traemelo')->name('download');
