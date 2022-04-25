@@ -94,15 +94,17 @@
             Generador de llaves automatico
             </div>
             <div class="card-body">
+
+               
+                    <a href="{{ route('token') }}" class="col-md-8 btn btn-dark">Generar Token</a>
+            
+            
                 <br>
-                <a href="#"  class="col-md-8 btn btn-dark">Crear</a>
-                <br>
-                <br>
-                <p class="fw-bold">Código: <p class="card-text fw-lighter">**********</p></p>              
+           
             </div>
-            <div class="card-footer text-muted fw-lighter">
+            <!--<div class="card-footer text-muted fw-lighter">
                 Aviso: Esta llave es solo de un uso y expira en poco tiempo.
-            </div>
+            </div>-->
             </div>
         </div>
 </div>

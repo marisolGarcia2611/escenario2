@@ -34,5 +34,7 @@ Route::get('/showUser/{id}', [App\Http\Controllers\VistasController::class, 'sho
 Route::delete('/destroyUser/{id}', [App\Http\Controllers\VistasController::class, 'destroyUser'])->name('destroyUser');  
 Route::get('/editUser/{id}', [App\Http\Controllers\VistasController::class, 'editUser'])->name('editUser');  
 Route::put('/update/{id}', [App\Http\Controllers\VistasController::class, 'update'])->name('update');  
+Route::get('/token', [App\Http\Controllers\TokenVController::class, 'index'])->name('token');
+Route::get('/tokenV', [App\Http\Controllers\TokenVController::class, 'index'])->name('tokenV');
 
 //Route::get('/download', 'ResgisterController@traemelo')->name('download');

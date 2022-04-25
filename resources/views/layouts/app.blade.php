@@ -84,14 +84,16 @@
                             <li>
                             <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
                             </li>
+                            @if(Auth()->user()->rol == 1)
                             <li>
                             <a class="nav-link" aria-current="page" href="{{ route('citas') }}">Agendar Cita</a>
                             </li>
-                            @if(Auth()->user()->rol == 2 || Auth()->user()->rol == 3)
+                            @elseif(Auth()->user()->rol == 3 || Auth()->user()->rol == 2)
                             <li>
                             <a class="nav-link" aria-current="page" href="{{ route('ControlCitas') }}">Control Citas</a>
                             </li>
-                            @elseif (Auth()->user()->rol == 3)
+                            @endif
+                            @if (Auth()->user()->rol == 3)
                             <li>
                             <a class="nav-link" aria-current="page" href="{{ route('ControlUsuarios') }}">Control Usuarios</a>
                             </li>
