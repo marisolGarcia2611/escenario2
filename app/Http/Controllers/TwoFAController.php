@@ -60,7 +60,7 @@ class TwoFAController extends Controller
             } else if($rol == 3  && $mivpn == $ip_actual){
                 return redirect()->route('home');
             } else if($rol == 3  && $mivpn != $ip_actual){
-                    return redirect()->route('logout');
+                    return redirect()->route('logout')->with('No estas en VPN');
             } else if($rol == 1){
                 return redirect()->route('home');
             }

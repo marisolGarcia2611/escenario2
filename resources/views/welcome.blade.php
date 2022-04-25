@@ -52,6 +52,11 @@
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                     <h1 class="text-light" style="font-size:100px;">Maemm.xyz<h2>
                 </div>
+                @if($mensaje = Session::get('success'))
+                      <div class="alert alert-danger" role="alert">
+                          {{$mensaje}}
+                      </div>
+                    @endif
 
                
     </body>
