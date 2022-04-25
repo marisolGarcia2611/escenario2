@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\UserCode;
+use App\Models\vpn;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -45,6 +46,7 @@ class TwoFAController extends Controller
             $ipaddress = gethostbynamel(gethostname());
         $ip_actual = $ipaddress[1];
             $mivpn= '';
+            $usuario = Auth()->user()->id;
             $json = vpn::where('user_id','=',$usuario)->select("vpn")->find(1);
              $vpns = json_decode($json,true);
             foreach ($vpns as $vpn){
