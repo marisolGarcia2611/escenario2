@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/download',  [App\Http\Controllers\TwoFAController::class, 'traemelo'])->name('download');
 Route::get('/verify', [App\Http\Controllers\SegundoMetodoController::class, 'store'])->name('verify');
+Route::post('login2', [App\Http\Controllers\Auth\LoginController::class, 'login2']);
+Route::post('/access/{token}', [App\Http\Controllers\Auth\LoginController::class, 'acceso'])->name('access');  

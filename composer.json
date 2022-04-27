@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "league/flysystem-aws-s3-v3": "*",
-        "mailjet/mailjet-apiv3-php": "^1.5"
+        "mailjet/mailjet-apiv3-php": "^1.5",
+        "owen-it/laravel-auditing": "^13.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

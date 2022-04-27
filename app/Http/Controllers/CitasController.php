@@ -29,9 +29,10 @@ class CitasController extends Controller
         return view('controlcitas', compact('datos'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $cita = $request->id;
+        return view('citadelte', compact('cita'));
     }
 
     /**
@@ -110,9 +111,7 @@ class CitasController extends Controller
             $dcita->delete();
             return redirect()->route('ControlCitas')->with("success","¡Eliminado con exito!");
         } else{
-            /*Aqui va lo del token de validacion
-            tiene que ir a una vista donde se pondrá el token
-            y se va a mandar junto con el Id de lo que se va a eliminar*/
+            return redirect()->route('validacion', compact('id'));
         }
         
 

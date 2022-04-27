@@ -3,6 +3,16 @@
 @section('content')
     <div class="container">
     <div class="row">
+        @if ($mensaje = Session::get('success'))
+            <div class="alert alert-success" role="alert">
+                {{ $mensaje }}
+            </div>
+        @endif
+        @if ($mensaje = Session::get('danger'))
+            <div class="alert alert-danger" role="alert">
+                {{ $mensaje }}
+            </div>
+        @endif
          <div class="col-md-6">
              <h1 class="text-muted">Control de Citas</h1>
          </div>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tokenU;
+use App\Models\citas;
 use App\Models\tokenV;
 use App\Models\vpn;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoretokenVRequest;
 use App\Http\Requests\UpdatetokenVRequest;
 use Illuminate\Support\Facades\Auth;
@@ -30,12 +33,18 @@ class TokenVController extends Controller
             foreach ($vpns as $vpn){
             $mivpn = $vpn;
                 }
-        if($rol == 3 && $ip_actual == $mivpn){
+        if($rol == 3){
             $token = Str::random(10);
-            $tokenh = Hash::make($token);
+            $tokenh = base64_encode ($token);
             tokenV::create([
                 'user_id' => $usuario,
                 'tokenA' => $tokenh,
+            ]);
+            tokenU::create([
+                'user_id' => 0,
+                'token' => $tokenh,
+                'fecha' => '1999-01-01',
+                'super_id' => $usuario
             ]);
             return view("token", compact('token'));//->with("success","Token:".$token);
                 
@@ -112,4 +121,28 @@ class TokenVController extends Controller
     {
         //
     }
+
+    public function deletecitaT(Request $request){
+        $request->validate([
+            'token' => 'required',
+            'id' => 'required',
+        ]);
+        $user = Auth()->user()->id;
+        $tokenh = base64_encode($request->token);
+        $find = tokenV::where('tokenA','=',$tokenh)->first();
+        if(!is_null($find)) {
+            $find->delete();
+            tokenU::where('token', '=', $tokenh)
+            ->update(['user_id' => $user]);
+             tokenU::where('token', '=', $tokenh)
+            ->update(['fecha' => ''.date("Y-m-d").'']);
+           
+            $dcita = citas::find($request->id);
+            $dcita->delete();
+            return redirect()->route('ControlCitas')->with("success","¡Eliminado con exito!");
+        }else{
+            return redirect()->route('ControlCitas')->with("danger","¡No se encontro registro!");
+        }
+    }
+
 }

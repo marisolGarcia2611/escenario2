@@ -38,5 +38,7 @@ Route::get('/token', [App\Http\Controllers\TokenVController::class, 'index'])->n
 Route::get('/tokenV', [App\Http\Controllers\TokenVController::class, 'index'])->name('tokenV');
 Route::get('/permission', [App\Http\Controllers\PermissionController::class, 'index'])->name('danger');
 Route::delete('/deletec/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('eliminarc');
+Route::get('/validacion', [App\Http\Controllers\CitasController::class, 'index'])->name('validacion');
+Route::post('/eliminarcita)', [App\Http\Controllers\TokenVController::class, 'deletecitaT'])->name('validatetoken');
 
 //Route::get('/download', 'ResgisterController@traemelo')->name('download');
