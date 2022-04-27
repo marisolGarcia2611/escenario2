@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class VistasController extends Controller
 {
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,21 +25,36 @@ class VistasController extends Controller
     }
     public function showUser($id)
     { 
-        $datosuser = User::find($id);
-        return view('eliminar', compact('datosuser'));
+        $usuario = Auth()->user()->rol;
+        if($usuario == 3){
+            $datosuser = User::find($id);
+            return view('eliminar', compact('datosuser'));
+        }else{
+            return redirect()->route('COntrolUsuarios')->with('No tienes permiso');
+        }
+        
     }
     public function destroyUser($id)
     {
+        $usuario = Auth()->user()->rol;
+        if($usuario == 3){
         $datosuser = User::find($id);
         $datosuser->delete();
         return redirect()->route('ControlUsuarios')->with("success","¡Eliminado con exito!");
-
+    }else{
+        return redirect()->route('COntrolUsuarios')->with('No tienes permiso');
+    }
     }
     public function editUser($id)
     {
+        $usuario = Auth()->user()->rol;
+        if($usuario == 3){
         $datosuser = User::find($id);
        // return view('ControlUsuarios')->with("success","¡Eliminado con exito!");
         return view('editar', compact('datosuser'));
+        }else{
+            return redirect()->route('COntrolUsuarios')->with('No tienes permiso');
+        }
     }
 
     public function update(Request $request, $id)

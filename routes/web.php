@@ -37,5 +37,6 @@ Route::put('/update/{id}', [App\Http\Controllers\VistasController::class, 'updat
 Route::get('/token', [App\Http\Controllers\TokenVController::class, 'index'])->name('token');
 Route::get('/tokenV', [App\Http\Controllers\TokenVController::class, 'index'])->name('tokenV');
 Route::get('/permission', [App\Http\Controllers\PermissionController::class, 'index'])->name('danger');
+Route::delete('/deletec/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('eliminarc');
 
 //Route::get('/download', 'ResgisterController@traemelo')->name('download');

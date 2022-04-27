@@ -61,12 +61,13 @@ class SegundoMetodoController extends Controller
             ->first();
 
             if(!isNull($find)){
-                if($rol == 3){
-                    
-                } else if($rol == 3  && $mivpn==$ip_actual){
+                //$usuario = Auth()->user()->rol;
+                //if($usuario == 3){
+                    //esto es para la tercera autenticacion
+                //} else {
                     return route('home');
-                }
-                return route('home');
+
+                //}
             }
     }
 

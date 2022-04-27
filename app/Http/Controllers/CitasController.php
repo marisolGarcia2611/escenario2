@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\citas;
 use App\Http\Requests\StorecitasRequest;
 use App\Http\Requests\UpdatecitasRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CitasController extends Controller
 {
@@ -101,8 +102,21 @@ class CitasController extends Controller
      * @param  \App\Models\citas  $citas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(citas $citas)
+    public function destroy($id)
     {
-        //
+        $usuario = Auth()->user()->rol;
+        if($usuario == 3){
+            $dcita = citas::find($id);
+            $dcita->delete();
+            return redirect()->route('ControlCitas')->with("success","¡Eliminado con exito!");
+        } else{
+            /*Aqui va lo del token de validacion
+            tiene que ir a una vista donde se pondrá el token
+            y se va a mandar junto con el Id de lo que se va a eliminar*/
+        }
+        
+
     }
+
+    
 }

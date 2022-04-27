@@ -24,7 +24,12 @@
                 <td>{{$item->descripcion}}</td>
                 <td>{{$item->hora}}</td>
                 <td>{{$item->fecha}}</td>
-                <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+                <form action="{{route('eliminarc',$item->id)}}" method="POST">
+                    @csrf
+                    @METHOD('DELETE')
+                <td><button class="btn btn-outline-dark" name='id' value="$item->id"  data-bs-toggle="modal" >Eliminar</button></td>
+            </form>
+                
                 </tr>
             @endforeach
 
