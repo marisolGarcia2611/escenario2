@@ -6,7 +6,7 @@ use App\Models\SegundoMetodo;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSegundoMetodoRequest;
 use App\Http\Requests\UpdateSegundoMetodoRequest;
-use App\Models\vpn;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\isNull;
@@ -44,31 +44,29 @@ class SegundoMetodoController extends Controller
         $request->validate([
             'code'=>'required',
         ]);
-            $mivpn='';
-            $rol = Auth()->user()->rol;
-            $ipaddress = gethostbynamel(gethostname());
-            $ip_actual = $ipaddress[1];
-            $id= Auth()->user()->id;
-            $json = vpn::where('user_id','=',$id)->select("vpn")->find(1);
-             $vpns = json_decode($json,true);
-            foreach ($vpns as $vpn){
-            $mivpn = $vpn;
-                }
-        
             $find = SegundoMetodo::where('user_id', auth()->user()->id)
             ->where('token', $request->code)
             ->where('updated_at', '>=', now()->subMinutes(2))
             ->first();
 
             if(!isNull($find)){
-                //$usuario = Auth()->user()->rol;
-                //if($usuario == 3){
-                    //esto es para la tercera autenticacion
-                //} else {
-                    return route('home');
-
-                //}
+                
+               
+                
             }
+    }
+
+    public function otro(Request $request){
+        $rol = Auth()->user()->rol;
+        
+        if($rol == 3){
+            return redirect()->route('soket');
+            }else if($rol == 2){
+                return route('home');
+            }
+                
+            
+    
     }
 
     /**

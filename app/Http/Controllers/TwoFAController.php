@@ -1,14 +1,16 @@
 <?php
   
 namespace App\Http\Controllers;
-  
+
+use App\Models\User;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\UserCode;
 use App\Models\vpn;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-
+use function PHPUnit\Framework\isNull;
 
 class TwoFAController extends Controller
 {
@@ -20,6 +22,18 @@ class TwoFAController extends Controller
     public function index()
     {   
         return view('2fa');
+    }
+
+    public function fa()
+    {
+        $find = Auth()->user()->acceso;
+        if($find == 0){
+            return view('222fa');
+        }else{
+            return redirect()->route('home');
+        }
+        
+                
     }
   
     /**
@@ -43,15 +57,7 @@ class TwoFAController extends Controller
             
   
         if (!is_null($find)) {
-            $ipaddress = gethostbynamel(gethostname());
-        $ip_actual = $ipaddress[1];
-            $mivpn= '';
-            $usuario = Auth()->user()->id;
-            $json = vpn::where('user_id','=',$usuario)->select("vpn")->find(1);
-             $vpns = json_decode($json,true);
-            foreach ($vpns as $vpn){
-            $mivpn = $vpn;
-                }
+            $rol = Auth()->user()->rol;
             Session::put('user_2fa', auth()->user()->id);
             $rol = Auth()->user()->rol;
             if($rol == 2 || $rol == 3){

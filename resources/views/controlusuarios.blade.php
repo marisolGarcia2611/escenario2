@@ -88,7 +88,7 @@
         <br>
         <br>
         <br>
-         <div class="row">
+        <!-- <div class="row">
                 <div class="card text-center">
                 <div class="card-header">
                 Generador de llaves automatico
@@ -102,7 +102,7 @@
                     <br>
                
                 </div>
-                <!--<div class="card-footer text-muted fw-lighter">
+                <div class="card-footer text-muted fw-lighter">
                     Aviso: Esta llave es solo de un uso y expira en poco tiempo.
                 </div>-->
                 </div>

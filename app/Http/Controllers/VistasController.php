@@ -23,6 +23,7 @@ class VistasController extends Controller
         $datosuser = User::all();
         return view('controlusuarios',compact('datosuser'));
     }
+    
     public function showUser($id)
     { 
         $usuario = Auth()->user()->rol;
@@ -69,4 +70,6 @@ class VistasController extends Controller
 
         
     }
+
+   
 }
