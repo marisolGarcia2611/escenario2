@@ -64,6 +64,7 @@ class VistasController extends Controller
         $datosuser -> name = $request->post('name');
         $datosuser -> email = $request->post('email');
         $datosuser -> rol = $request->post('rol');
+        $datosuser -> acceso = $request->post('acceso');
         $datosuser -> save();
 
         return redirect()->route('ControlUsuarios')->with("success","¡Editado correctamente!");

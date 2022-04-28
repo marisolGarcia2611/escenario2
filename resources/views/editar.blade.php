@@ -20,6 +20,10 @@
                     <label  class="form-label">Rol</label>
                     <input type="text" class="form-control" id="rol" name="rol"  required value="{{$datosuser->rol}}">
                 </div>
+                <div class="mb-3">
+                    <label  class="form-label">Acceso</label>
+                    <input type="text" class="form-control" id="acceso" name="acceso"  required value="{{$datosuser->acceso}}">
+                </div>
                 <a href="{{ route('ControlUsuarios') }}"class="btn btn-outline-secondary">Regresar</a>
                 <button type="submit" class="btn btn-dark">Submit</button>
             </form>

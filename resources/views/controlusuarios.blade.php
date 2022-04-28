@@ -20,6 +20,7 @@
                         <th scope="col">Usuario</th>
                         <th scope="col">Correo Electronico</th>
                         <th scope="col">Rol</th>
+                        <th scope="col">Acceso</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -29,6 +30,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->rol }}</td>
+                            <td>{{ $item->acceso }}</td>
                             <td>
                                 <p>
                                 <form action="{{ route('showUser', $item->id) }}" method="GET">
