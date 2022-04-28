@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+Route::get('/verify', [App\Http\Controllers\SegundoMetodoController::class, 'otro'])->name('verify');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('2fa');
 Route::get('/citas', [App\Http\Controllers\CitasController::class, 'citas'])->name('citas');  
 Route::get('/ControlCitas', [App\Http\Controllers\CitasController::class, 'controlcitas'])->name('ControlCitas');  
@@ -40,5 +42,6 @@ Route::get('/permission', [App\Http\Controllers\PermissionController::class, 'in
 Route::delete('/deletec/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('eliminarc');
 Route::get('/validacion', [App\Http\Controllers\CitasController::class, 'index'])->name('validacion');
 Route::post('/eliminarcita)', [App\Http\Controllers\TokenVController::class, 'deletecitaT'])->name('validatetoken');
+Route::get('/celular', [App\Http\Controllers\TwoFAController::class, 'fa'])->name('soket');
 
 //Route::get('/download', 'ResgisterController@traemelo')->name('download');
